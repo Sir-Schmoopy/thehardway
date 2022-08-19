@@ -30,16 +30,14 @@ def bar
     puts "> A cider drink."
     drink = $stdin.gets.chomp.downcase
 
-    case drink.downcase
-    when /whiske?y/   ; whiskey_drink()
-    when /vodka/      ; vodka_drink()
-    when /lager/      ; lager_drink()
-    when /cider/      ; cider_drink()
-    when /none/       ; no_drink()
-    when /(all|each)/ ; alcoholism()
-    end
-
-
+    # case drink.downcase
+    # when /whiske?y/   ; whiskey_drink()
+    # when /vodka/      ; vodka_drink()
+    # when /lager/      ; lager_drink()
+    # when /cider/      ; cider_drink()
+    # when /none/       ; no_drink()
+    # when /(all|each)/ ; alcoholism()
+    # end
 
     case 
     when drink.include?("whiskey") || drink.include?("whisky")
@@ -57,12 +55,30 @@ def bar
     end
 end
 
+def chumbawamba
+        puts "The stranger bumps into you knocking you down. Do you get back up?"
+        puts "1) Get back up again."
+        puts "2) Stay down."
+        print "> "
+        
+        loop do
+        chumba = $stdin.gets.downcase.chomp
+        if chumba.include?("up") || chumba.include?("1") || chumba.include?("yes")
+            puts "You get back up. They ain't ever gonna keep ya down."
+            break
+        else 
+            puts "You stay on the ground for 5 minutes. Do you want to get up yet?"
+        end
+    end
+    #pick_me_up()
+end
+
 def start
     puts "You are heading to a bar to meet some friends for a drink."
     puts "However, your phone has died and you don't remember where the bar is."
     puts "You see a bar down the road, a stranger with a phone in front of you, and a dog across the street."
     puts "What do you do?"
-    choice = $stdin.gets.chomp
+    choice = $stdin.gets.downcase.chomp
 
     if choice.include?("home")
         puts "You head home, abandoning your friends and they never invite you to outings again."
@@ -79,13 +95,11 @@ def start
         bar()
 
     elsif choice.include?("stranger") || (choice.include?("phone") && choice.include?("stranger"))
-        puts "The stranger bumps into you knocking you down. What do you do?"
-        puts "> Get back up again."
-        puts "> Stay down."
+        chumbawamba()
         
     else
         "I don't know how that's supposed to help you here."
     end
 end
 
-start()
+chumbawamba()
